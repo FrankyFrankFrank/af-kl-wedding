@@ -1,0 +1,28 @@
+.full-page {
+	height: 100vh;
+}
+
+.v-center {
+	align-items: center;
+}
+
+@mixin pt($x) {
+	padding-top: $x;
+}
+
+@mixin pb($x) {
+	padding-bottom: $x;
+}
+
+.p- {
+	&t- {
+		&22 {
+			@include pt(22px);
+		}
+	}
+	&b- {
+		&22 {
+			@include pb(22px);
+		}
+	}
+}
