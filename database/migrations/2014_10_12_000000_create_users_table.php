@@ -18,9 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->integer('rsvp_number')->unique()->nullable();
             $table->string('status')->default('unresponded');
             $table->integer('wedding_id')->unsigned()->nullable();
-            $table->integer('attending_id')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

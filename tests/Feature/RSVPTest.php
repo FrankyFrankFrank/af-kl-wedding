@@ -38,7 +38,8 @@ class RSVPTest extends TestCase
     public function user_can_accept_invitation_to_wedding() {
     	$user = factory(User::class)->create([
     		"name" => "Johnny Test",
-    		"email" => "johnny@test.com"
+    		"email" => "johnny@test.com",
+            "rsvp_number" => 2333
 		]);
 
 		$wedding = factory(Wedding::class)->create();
@@ -49,7 +50,7 @@ class RSVPTest extends TestCase
 
 		$user->accept_invitation();
 
-		$this->assertEquals('johnny@testcom', $wedding->attending->first()->email);
+		$this->assertEquals('johnny@test.com', $wedding->attending->first()->email);
 
     }
 
@@ -64,7 +65,7 @@ class RSVPTest extends TestCase
 		$wedding->invite($user);
    		$this->assertEquals($user->id, $wedding->invited->first()->id);
 
-   		$user->decline($wedding);
+   		$user->decline_invitation($wedding);
    		$this->assertEquals($user->id, $wedding->declined->first()->id);
 
     }

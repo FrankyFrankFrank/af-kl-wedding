@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class UserTest extends TestCase
 {
     use DatabaseMigrations;
-    
+
     /** @test **/
     public function can_create_user() {
     	$user = factory(User::class)->create([

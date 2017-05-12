@@ -32,10 +32,14 @@ class User extends Authenticatable
     }
 
     public function accept_invitation() {
-        $this->status = 'attending';
+        $this->update([
+           'status' => 'accepted'
+        ]);
     }
 
     public function decline_invitation() {
-        $wedding->declined()->save($this);
+        $this->update([
+            'status' => 'declined'
+        ]);
     }
 }
