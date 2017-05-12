@@ -1,9 +1,6 @@
 <?php
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/rsvp', 'RSVPController@rsvp');
+Route::post('/rsvp', 'RSVPController@submit');
 
-Route::get('/rsvp', function() {
-	return view('rsvp');
-});
+Route::get('/home', 'HomeController@index')->name('home');
