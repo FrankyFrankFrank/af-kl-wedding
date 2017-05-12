@@ -18,7 +18,7 @@ class Wedding extends Model
 
     public function attending()
     {
-    	return $this->hasMany('App\User')->where('status', 'attending');
+    	return $this->hasMany('App\User')->where('status', 'accepted');
     }
 
     public function declined()

@@ -27,28 +27,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function __construct($status = 'unresponded'){
-        parent::__construct();
-        $this->status = $status;
-    }
-
     public function invited_to() {
         return $this->belongsTo('App\Wedding');
     }
 
-    public function setStatus($status)
-    {
-        $this->status = $status;
-        $this->save();
-    }
-
     public function accept_invitation() {
         $this->status = 'attending';
-        $this->save();
     }
 
     public function decline_invitation() {
-        $this->status = 'declined';
-        $this->save();
+        $wedding->declined()->save($this);
     }
 }
