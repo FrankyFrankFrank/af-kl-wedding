@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Mockery\Exception;
 use Validator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class RSVPController extends Controller
 {
@@ -26,7 +28,20 @@ class RSVPController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        $user = User::where('rsvp_number', $request->rsvp_number)->get();
+
+        try {
+            $user = User::where('rsvp_number', $request->rsvp_number)->firstOrFail();
+        } catch (ModelNotFoundException $exception) {
+            return redirect('/rsvp')
+                ->withErrors(['guest_not_found' => $exception->getMessage()])
+                ->withInput();
+        }
+
+        if(!$user->name == $request->firstname . " " . $request->lastname) {
+            return redirect('/rsvp')
+                ->withErrors(['mismatch'])
+                ->withInput();
+        }
 
         return view('rsvp');
     }
