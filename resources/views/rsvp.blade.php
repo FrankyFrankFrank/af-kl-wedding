@@ -54,15 +54,13 @@
                     @endif
                 </div>
                 @if($errors->first('guest_not_found'))
-                    <div class="notification is-danger">
-                        <button class="delete"></button>
-                        Guest Not Found
+                    <div class="field">
+                        <p class="help is-danger">Guest Not Found</p>
                     </div>
                 @endif
                 @if($errors->first('mismatch'))
-                    <div class="notification is-danger">
-                        <button class="delete"></button>
-                        Guest Name Does Not Match RSVP Code
+                    <div class="field">
+                        <p class="help is-danger">Guest Name Does Not Match RSVP Code</p>
                     </div>
                 @endif
                 {{ Form::submit('RSVP', ['class'=> 'button is-primary']) }}
