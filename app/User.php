@@ -31,13 +31,19 @@ class User extends Authenticatable
         return $this->belongsTo('App\Wedding');
     }
 
-    public function accept_invitation() {
+    public function accept_invitation(int $code) {
+        if($code != $this->rsvp_number) {
+            return;
+        }
         $this->update([
-           'status' => 'accepted'
+            'status' => 'accepted'
         ]);
     }
 
-    public function decline_invitation() {
+    public function decline_invitation(int $code) {
+        if($code != $this->rsvp_number) {
+            return;
+        }
         $this->update([
             'status' => 'declined'
         ]);

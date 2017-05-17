@@ -48,7 +48,7 @@ class RSVPTest extends TestCase
 		$this->assertEquals('johnny@test.com', $wedding->invited->first()->email);
 		$this->assertEquals('johnny@test.com', $wedding->unresponded->first()->email);
 
-		$user->accept_invitation();
+		$user->accept_invitation(2333);
 
 		$this->assertEquals('johnny@test.com', $wedding->attending->first()->email);
 
@@ -58,16 +58,51 @@ class RSVPTest extends TestCase
     public function user_can_decline_to_attend() {
     	$user = factory(User::class)->create([
     		"name" => "Johnny Test",
-    		"email" => "johnny@test.com"
-		]);
+    		"email" => "johnny@test.com",
+            "rsvp_number" => 2333
+        ]);
 
 		$wedding = factory(Wedding::class)->create();
 		$wedding->invite($user);
    		$this->assertEquals($user->id, $wedding->invited->first()->id);
 
-   		$user->decline_invitation($wedding);
+   		$user->decline_invitation(2333);
    		$this->assertEquals($user->id, $wedding->declined->first()->id);
 
+    }
+
+    public function test_user_must_submit_rsvp_code_to_accept()
+    {
+        $user = factory(User::class)->create([
+            "name" => "Johnny Test",
+            "email" => "johnny@test.com",
+            "rsvp_number" => 2333
+        ]);
+
+        $wedding = factory(Wedding::class)->create();
+        $wedding->invite($user);
+        $this->assertEquals($user->id, $wedding->invited->first()->id);
+
+        $user->accept_invitation(9999);
+
+        $this->assertNull($wedding->attending->first());
+    }
+
+    public function test_user_must_submit_rsvp_code_to_decline()
+    {
+        $user = factory(User::class)->create([
+            "name" => "Johnny Test",
+            "email" => "johnny@test.com",
+            "rsvp_number" => 2333
+        ]);
+
+        $wedding = factory(Wedding::class)->create();
+        $wedding->invite($user);
+        $this->assertEquals($user->id, $wedding->invited->first()->id);
+
+        $user->decline_invitation(9999);
+
+        $this->assertNull($wedding->declined->first());
     }
 
 

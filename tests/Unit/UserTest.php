@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\User;
+use App\Wedding;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -23,4 +24,6 @@ class UserTest extends TestCase
     		"email" => "johnny@test.com"
 		]);
     }
+
+
 }
