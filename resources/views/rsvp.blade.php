@@ -10,7 +10,7 @@
 		</div>
 	</div>
 </div>
-<section class="hero is-fullheight">
+<section class="hero">
 	<div class="hero-body has-text-centered">
 		<div class="container">
 			<h1>RSVP</h1>
