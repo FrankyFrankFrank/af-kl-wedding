@@ -37,7 +37,7 @@ class RSVPController extends Controller
                 ->withInput();
         }
 
-        if(!$user->name == $request->firstname . " " . $request->lastname) {
+        if(!strtolower($user->name) == strtolower($request->firstname . " " . $request->lastname)) {
             return redirect('/rsvp')
                 ->withErrors(['mismatch'])
                 ->withInput();
