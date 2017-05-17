@@ -15,7 +15,14 @@ class RSVPTest extends TestCase
 	use DatabaseMigrations;
 
 
-	    /** @test **/
+    /** @test **/
+	public function can_visit_rsvp_page() {
+        $response = $this->get('/rsvp');
+
+        $response->assertStatus(200);
+    }
+
+    /** @test **/
     public function user_can_be_invited_to_wedding() {
        	$user = factory(User::class)->create([
        		"name" => "Johnny Test",
