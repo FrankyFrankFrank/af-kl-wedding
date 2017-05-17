@@ -53,6 +53,18 @@
                         <p class="help is-danger">{{ $errors->first('rsvp_number') }}</p>
                     @endif
                 </div>
+                @if($errors->first('guest_not_found'))
+                    <div class="notification is-danger">
+                        <button class="delete"></button>
+                        Guest Not Found
+                    </div>
+                @endif
+                @if($errors->first('mismatch'))
+                    <div class="notification is-danger">
+                        <button class="delete"></button>
+                        Guest Name Does Not Match RSVP Code
+                    </div>
+                @endif
                 {{ Form::submit('RSVP', ['class'=> 'button is-primary']) }}
             {!! Form::close() !!}
         </div>
