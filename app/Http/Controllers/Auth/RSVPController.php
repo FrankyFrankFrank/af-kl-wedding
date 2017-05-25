@@ -30,19 +30,19 @@ class RSVPController extends Controller
         }
 
         try {
-            $user = User::where('rsvp_number', $request->rsvp_number)->firstOrFail();
+            $guest = User::where('rsvp_number', $request->rsvp_number)->firstOrFail();
         } catch (ModelNotFoundException $exception) {
             return redirect('/rsvp')
                 ->withErrors(['guest_not_found' => $exception->getMessage()])
                 ->withInput();
         }
 
-        if(!strtolower($user->name) == strtolower($request->firstname . " " . $request->lastname)) {
+        if(!strtolower($guest->name) == strtolower($request->firstname . " " . $request->lastname)) {
             return redirect('/rsvp')
                 ->withErrors(['mismatch'])
                 ->withInput();
         }
 
-        return view('rsvp');
+        return view('rsvp', ['guest' => $guest]);
     }
 }

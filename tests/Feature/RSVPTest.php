@@ -112,5 +112,26 @@ class RSVPTest extends TestCase
         $this->assertNull($wedding->declined->first());
     }
 
+    public function test_user_can_log_in_with_code()
+    {
+        $user = factory(User::class)->make([
+            "name" => "Johnny Test",
+            "email" => "johnny@tests.com",
+            "rsvp_number" => 2333
+        ]);
+
+        $wedding = factory(Wedding::class)->create();
+        $wedding->invite($user);
+
+        $response = $this->json('POST','/rsvp', [
+            'firstname' => 'Johnny',
+            'lastname' => 'Test',
+            'rsvp_number' => 2333
+        ]);
+
+        $response->assertStatus(200)
+            ->assertViewHas('guest');
+    }
+
 
 }
