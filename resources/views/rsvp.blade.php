@@ -30,7 +30,7 @@
 
             <div class="column">
                 {!! Form::open(['url' => '/rsvp']) !!}
-                    <div class="field">
+                    <!-- <div class="field">
                         <label class="label" for="firstname">First Name</label>
                         <p class="control">
                             <input type="text" id="firstname" name="firstname" class="input" value="{{ old('firstname') }}"/>
@@ -47,7 +47,7 @@
                         @if($errors->has('lastname'))
                             <p class="help is-danger">{{ $errors->first('lastname') }}</p>
                         @endif
-                    </div>
+                    </div> -->
                     <div class="field">
                         <label class="label" for="rsvp_number">Your RSVP Code</label>
                         <p class="control">

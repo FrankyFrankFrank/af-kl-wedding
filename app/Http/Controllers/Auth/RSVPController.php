@@ -19,8 +19,6 @@ class RSVPController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'rsvp_number' => 'required|numeric',
-            'firstname' => 'required',
-            'lastname' => 'required',
         ]);
 
         if ($validator->fails()) {
