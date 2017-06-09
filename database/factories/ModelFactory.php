@@ -17,3 +17,8 @@ $factory->define(App\Wedding::class, function (Faker\Generator $faker) {
     return [
     ];
 });
+
+$factory->define(App\Party::class, function (Faker\Generator $faker) {
+    return [
+    ];
+});

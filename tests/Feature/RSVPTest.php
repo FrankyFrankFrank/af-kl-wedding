@@ -124,13 +124,10 @@ class RSVPTest extends TestCase
         $wedding->invite($user);
 
         $response = $this->json('POST','/rsvp', [
-            'firstname' => 'Johnny',
-            'lastname' => 'Test',
             'rsvp_number' => 2333
         ]);
 
-        $response->assertStatus(200)
-            ->assertViewHas('guest');
+        $response->assertRedirect('/rsvp/'. $user->id);
     }
 
 

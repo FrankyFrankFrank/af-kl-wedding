@@ -18,7 +18,40 @@
 	            <div class="column">
 	            	<h1>Guests</h1>
 	            	<h3>{{ $user->name }}</h3>
-	            	<p>Chicken or Fish</p>
+                		{!! Form::open(['url' => '/rsvp']) !!}
+                			<div class="field">
+                				<label class="label">Will be...</label>
+                			    <p class="control">
+                			        <label class="radio">
+            			              <input type="radio" name="entree">
+            			              Attending
+            			            </label>
+            			            <label class="radio">
+            			              <input type="radio" name="entree">
+            			              Not Attending
+            			            </label>
+                			    </p>
+                			    @if($errors->has('entree'))
+                			        <p class="help is-danger">{{ $errors->first('entree') }}</p>
+                			    @endif
+                			</div>
+                			<div class="field">
+                				<label class="label">Entree</label>
+                			    <p class="control">
+                			        <label class="radio">
+            			              <input type="radio" name="entree">
+            			              Chicken
+            			            </label>
+            			            <label class="radio">
+            			              <input type="radio" name="entree">
+            			              Fish
+            			            </label>
+                			    </p>
+                			    @if($errors->has('entree'))
+                			        <p class="help is-danger">{{ $errors->first('entree') }}</p>
+                			    @endif
+                			</div>
+                		{!! Form::close() !!}
 	            </div>
 
 	        </div>
