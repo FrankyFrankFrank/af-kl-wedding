@@ -33,7 +33,8 @@ class UserTest extends TestCase
         ]);
 
         $party = factory(Party::class)->create([
-            "name" => "The Tests"
+            "name" => "The Tests",
+            "rsvp_code" => 9999
         ]);
 
         $party->guests()->save($user);

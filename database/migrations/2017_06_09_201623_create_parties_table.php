@@ -16,6 +16,7 @@ class CreatePartiesTable extends Migration
         Schema::create('parties', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('rsvp_code');
             $table->timestamps();
         });
     }

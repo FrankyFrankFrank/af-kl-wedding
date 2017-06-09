@@ -46,9 +46,9 @@ class SelectionController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $party = Party::find($id);
 
-        return view('selection', [ 'user' => $user ]);
+        return view('selection', [ 'party' => $party ]);
     }
 
     /**
