@@ -35,12 +35,6 @@ class RSVPController extends Controller
                 ->withInput();
         }
 
-        if(!strtolower($guest->name) == strtolower($request->firstname . " " . $request->lastname)) {
-            return redirect('/rsvp')
-                ->withErrors(['mismatch'])
-                ->withInput();
-        }
-
-        return view('rsvp', ['guest' => $guest]);
+        return redirect('/rsvp/' . $guest->id);
     }
 }
