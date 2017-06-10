@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 use Mockery\Exception;
 use Validator;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\User;
+use App\Party;
 
 class RSVPController extends Controller
 {
@@ -18,7 +18,7 @@ class RSVPController extends Controller
     public function submit(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'rsvp_number' => 'required|numeric',
+            'rsvp_code' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -27,14 +27,14 @@ class RSVPController extends Controller
                 ->withInput();
         }
 
-        try {
-            $guest = User::where('rsvp_number', $request->rsvp_number)->firstOrFail();
-        } catch (ModelNotFoundException $exception) {
+        $party = Party::where('rsvp_code', $request->rsvp_code)->first();
+
+        if(! $party) {
             return redirect('/rsvp')
                 ->withErrors(['guest_not_found' => $exception->getMessage()])
                 ->withInput();
         }
 
-        return redirect('/rsvp/' . $guest->id);
+        return redirect('/rsvp/' . $party->id);
     }
 }

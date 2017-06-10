@@ -30,31 +30,13 @@
 
             <div class="column">
                 {!! Form::open(['url' => '/rsvp']) !!}
-                    <!-- <div class="field">
-                        <label class="label" for="firstname">First Name</label>
-                        <p class="control">
-                            <input type="text" id="firstname" name="firstname" class="input" value="{{ old('firstname') }}"/>
-                        </p>
-                        @if($errors->has('firstname'))
-                            <p class="help is-danger">{{ $errors->first('firstname') }}</p>
-                        @endif
-                    </div>
                     <div class="field">
-                        <label class="label" for="lastname">Last Name</label>
+                        <label class="label" for="rsvp_code">Your RSVP Code</label>
                         <p class="control">
-                            <input type="text" id="lastname" name="lastname" class="input" value="{{ old('lastname') }}"/>
+                            <input type="text" id="rsvp_code" name="rsvp_code" class="input" value="{{ old('rsvp_code') }}"/>
                         </p>
-                        @if($errors->has('lastname'))
-                            <p class="help is-danger">{{ $errors->first('lastname') }}</p>
-                        @endif
-                    </div> -->
-                    <div class="field">
-                        <label class="label" for="rsvp_number">Your RSVP Code</label>
-                        <p class="control">
-                            <input type="text" id="rsvp_number" name="rsvp_number" class="input" value="{{ old('rsvp_number') }}"/>
-                        </p>
-                        @if($errors->has('rsvp_number'))
-                            <p class="help is-danger">{{ $errors->first('rsvp_number') }}</p>
+                        @if($errors->has('rsvp_code'))
+                            <p class="help is-danger">{{ $errors->first('rsvp_code') }}</p>
                         @endif
                     </div>
                     @if($errors->first('guest_not_found'))

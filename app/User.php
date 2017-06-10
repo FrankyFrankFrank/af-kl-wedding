@@ -32,18 +32,12 @@ class User extends Authenticatable
     }
 
     public function accept_invitation(int $code) {
-        if($code != $this->rsvp_number) {
-            return;
-        }
         $this->update([
             'status' => 'accepted'
         ]);
     }
 
     public function decline_invitation(int $code) {
-        if($code != $this->rsvp_number) {
-            return;
-        }
         $this->update([
             'status' => 'declined'
         ]);

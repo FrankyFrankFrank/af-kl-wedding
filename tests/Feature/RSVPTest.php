@@ -46,7 +46,6 @@ class RSVPTest extends TestCase
     	$user = factory(User::class)->create([
     		"name" => "Johnny Test",
     		"email" => "johnny@test.com",
-            "rsvp_number" => 2333
 		]);
 
 		$wedding = factory(Wedding::class)->create();
@@ -66,7 +65,6 @@ class RSVPTest extends TestCase
     	$user = factory(User::class)->create([
     		"name" => "Johnny Test",
     		"email" => "johnny@test.com",
-            "rsvp_number" => 2333
         ]);
 
 		$wedding = factory(Wedding::class)->create();
@@ -76,58 +74,6 @@ class RSVPTest extends TestCase
    		$user->decline_invitation(2333);
    		$this->assertEquals($user->id, $wedding->declined->first()->id);
 
-    }
-
-    public function test_user_must_submit_rsvp_code_to_accept()
-    {
-        $user = factory(User::class)->create([
-            "name" => "Johnny Test",
-            "email" => "johnny@test.com",
-            "rsvp_number" => 2333
-        ]);
-
-        $wedding = factory(Wedding::class)->create();
-        $wedding->invite($user);
-        $this->assertEquals($user->id, $wedding->invited->first()->id);
-
-        $user->accept_invitation(9999);
-
-        $this->assertNull($wedding->attending->first());
-    }
-
-    public function test_user_must_submit_rsvp_code_to_decline()
-    {
-        $user = factory(User::class)->create([
-            "name" => "Johnny Test",
-            "email" => "johnny@test.com",
-            "rsvp_number" => 2333
-        ]);
-
-        $wedding = factory(Wedding::class)->create();
-        $wedding->invite($user);
-        $this->assertEquals($user->id, $wedding->invited->first()->id);
-
-        $user->decline_invitation(9999);
-
-        $this->assertNull($wedding->declined->first());
-    }
-
-    public function test_user_can_log_in_with_code()
-    {
-        $user = factory(User::class)->make([
-            "name" => "Johnny Test",
-            "email" => "johnny@tests.com",
-            "rsvp_number" => 2333
-        ]);
-
-        $wedding = factory(Wedding::class)->create();
-        $wedding->invite($user);
-
-        $response = $this->json('POST','/rsvp', [
-            'rsvp_number' => 2333
-        ]);
-
-        $response->assertRedirect('/rsvp/'. $user->id);
     }
 
 
