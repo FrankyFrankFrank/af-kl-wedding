@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Party;
 
 class SelectionController extends Controller
 {
@@ -35,7 +36,7 @@ class SelectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
     }
 
     /**
@@ -47,8 +48,8 @@ class SelectionController extends Controller
     public function show($id)
     {
         $party = Party::find($id);
-
-        return view('selection', [ 'party' => $party ]);
+        $guests = $party->guests->all();
+        return view('selection', [ 'party' => $party, 'guests' => $guests ]);
     }
 
     /**

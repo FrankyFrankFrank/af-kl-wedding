@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\User;
 use App\Wedding;
+use App\Party;
 
 class RSVPTest extends TestCase
 {
@@ -74,6 +75,18 @@ class RSVPTest extends TestCase
    		$user->decline_invitation(2333);
    		$this->assertEquals($user->id, $wedding->declined->first()->id);
 
+    }
+
+    /** @test **/
+    public function can_select_guest_entree() {
+        $guest = factory(User::class)->create();
+        $party = factory(Party::class)->create();
+
+        $party->guests()->save($guest);
+
+        $response = $this->json('POST', '/rsvp/' . $party->id);
+
+        $response->assertStatus(200);
     }
 
 

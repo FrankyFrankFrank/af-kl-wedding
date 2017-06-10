@@ -34,7 +34,6 @@ class RSVPController extends Controller
                 ->withErrors(['guest_not_found' => $exception->getMessage()])
                 ->withInput();
         }
-
         return redirect('/rsvp/' . $party->id);
     }
 }

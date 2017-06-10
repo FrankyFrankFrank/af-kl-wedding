@@ -16,8 +16,11 @@
 	        <div class="columns">
 
 	            <div class="column">
-	            	<h1>Guests</h1>
-	            	<h3>{{ $user->name }}</h3>
+	            	<h1>{{ $party->name }}</h1>
+                    @foreach($guests as $guest)
+	            	<h3>{{ $guest->name }}</h3>
+                    <hr>
+                    @endforeach
                 		{!! Form::open(['url' => '/rsvp']) !!}
                 			<div class="field">
                 				<label class="label">Will be...</label>
